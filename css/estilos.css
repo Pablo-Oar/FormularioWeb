@@ -22,6 +22,7 @@ main{
     background-color: rgba(2, 35, 13, 0.827);
     border-radius: 5px;
     color: rgb(254, 251, 251, 0.6);
+    border-bottom: 1px solid #fff;
 }
 
 .formulario:hover{
@@ -70,6 +71,8 @@ main{
     font-size: 12px;
     margin-bottom: 0;
     display: none;
+    color: #bb2929;
+    font-weight: bold;
 }
 
 .formulario__input-error-activo{
