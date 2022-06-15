@@ -113,6 +113,7 @@
             document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) =>{
                 icono.classList.remove('formulario__grupo-correcto');
             })
+            document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
         }else{
             //Si alguno de los campos no es correcto e intento enviar el formulario aparece el mensaje de error.
             document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
