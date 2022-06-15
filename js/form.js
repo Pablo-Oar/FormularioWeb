@@ -105,7 +105,17 @@
             formulario.reset();
 
             document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
-
+            //Luego de enviarlo espero 5seg. y quito el mensaje de exito
+            setTimeout(() =>{
+                document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo');
+            }, 5000);
+            //Ademas quito los iconos (totos) de las validaciones.
+            document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) =>{
+                icono.classList.remove('formulario__grupo-correcto');
+            })
+        }else{
+            //Si alguno de los campos no es correcto e intento enviar el formulario aparece el mensaje de error.
+            document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
         }
     })
 
