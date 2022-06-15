@@ -4,7 +4,9 @@
 
     //Recupero todos los inputs dentro del formulario.
     let inputs= document.querySelectorAll('#formulario input');
+
     
+
     //Defino el objeto con mis expresiones regulares.
     const expresiones = {
         usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion bajo.
@@ -13,6 +15,15 @@
         email:  /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
         telefono: /^\d{7,14}$/ // 7 a 14 numeros.
     } 
+
+    //Creo un objeto para setear los campos en falso.
+    const campos = {
+        usuario:false,
+        nombre:false,
+        password:false,
+        email:false,
+        telefono:false
+    }
 
     const validarFormulario = (e) => {
         switch (e.target.name) {
@@ -47,6 +58,7 @@
             document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
             document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');  
             document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
+            campos[campo] = true;
         }else{
             document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
             document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
@@ -54,6 +66,7 @@
             document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
 
             document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
+            campos[campo] = false;
         }
     }
 
@@ -68,6 +81,7 @@
             document.querySelector(`#grupo__password2 i`).classList.remove('fa-check-circle');
 
             document.querySelector(`#grupo__password2 .formulario__input-error`).classList.add('formulario__input-error-activo');
+            campos['password'] = false;
         }else{
             document.getElementById(`grupo__password2`).classList.remove('formulario__grupo-incorrecto');
             document.getElementById(`grupo__password2`).classList.add('formulario__grupo-correcto');
@@ -75,8 +89,25 @@
             document.querySelector(`#grupo__password2 i`).classList.add('fa-check-circle');
 
             document.querySelector(`#grupo__password2 .formulario__input-error`).classList.remove('formulario__input-error-activo');
+            campos['password'] = true;
         }
     }
+
+    //Le agrego un evento al formulario.
+    //Si estaría trabajando con el back valido los campos y envío los datos,
+    //Pero ahora solamente valido los datos y limpio los campos.
+    formulario.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const terminos = document.getElementById('terminos');
+        //Antes de enviar los datos valido si todos los campos fueron validados de forma correcta.
+        if(campos.usuario && campos.nombre && campos.password && campos.email && campos.telefono && terminos.checked){
+            formulario.reset();
+
+            document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
+
+        }
+    })
 
     //Quiero que por cada input me ejecute este código.
     inputs.forEach((input)=> {
@@ -84,11 +115,4 @@
         input.addEventListener('blur', validarFormulario); // Cuando de un click fuera del input tambíen valido.
     })
 
-    //Le agrego un evento al formulario.
-    //Si estaria trabajando con el back valido los campos y envío los datos,
-    //Pero ahora solamente valido los datos y limpio los campos.
-    formulario.addEventListener('submit', (e) => {
-        e.preventDefault();
-    })
-    
 }())
