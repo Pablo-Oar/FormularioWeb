@@ -1,4 +1,4 @@
-(function() {
+window.onload = () =>{
     //Recupero el formulario
     let form = document.getElementById('formulario');
 
@@ -126,4 +126,4 @@
         input.addEventListener('blur', validarFormulario); // Cuando de un click fuera del input tambíen valido.
     })
 
-}())
+}
