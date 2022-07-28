@@ -116,6 +116,7 @@ main{
 }
 .formulario__mensaje p{
     margin: 0;
+    text-align: center;
 }
 
 .formulario__grupo-btn-enviar{

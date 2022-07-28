@@ -5,8 +5,6 @@ window.onload = () =>{
     //Recupero todos los inputs dentro del formulario.
     let inputs= document.querySelectorAll('#formulario input');
 
-    
-
     //Defino el objeto con mis expresiones regulares.
     const expresiones = {
         usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion bajo.
